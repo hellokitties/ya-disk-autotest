@@ -2,7 +2,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
@@ -10,20 +9,19 @@ import static org.awaitility.Awaitility.await;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.hasEntry;
 
-public class PostFileTest extends BaseTest
-{
+public class PostFileTest extends BaseTest {
     private static final String FILE_NAME = "flowers.jpg";
     private static final String PATH = "disk:/" + FILE_NAME;
     private static final String EXTERNAL_IMAGE_URL = "https://avatars.mds.yandex.net/i?id=923dd649118e22d10c381f0b01204b68c29bdc80-5343653-images-thumbs&n=13";
 
     @Test
     @DisplayName("Асинхронная загрузка файла по внешней ссылке")
-    void testUploadFile() throws InterruptedException {
-       var response =  given()
+    void testUploadFile() {
+        var response = given()
                 .spec(getBaseRequestSpec())
                 .queryParams("path", PATH, "url", EXTERNAL_IMAGE_URL)
                 .when()
-                .post(BASE_URL+"/resources/upload")
+                .post(BASE_URL + "/resources/upload")
                 .then()
                 .statusCode(202)
                 .log().ifValidationFails();
@@ -33,19 +31,19 @@ public class PostFileTest extends BaseTest
         await()
                 .pollInterval(1, TimeUnit.SECONDS)
                 .atMost(10, TimeUnit.SECONDS)
-                .untilAsserted(() -> {
-                    given() .spec(getBaseRequestSpec())
+                .untilAsserted(() ->
+                    given().spec(getBaseRequestSpec())
                             .when()
                             .get(href)
                             .then()
                             .statusCode(200)
-                            .body("status", equalTo("success"));
-                });
+                            .body("status", equalTo("success"))
+                );
 
         given().spec(getBaseRequestSpec())
                 .queryParam("path", "disk:/")
                 .when()
-                .get(BASE_URL+"/resources")
+                .get(BASE_URL + "/resources")
                 .then()
                 .statusCode(200)
                 .log().ifValidationFails()
