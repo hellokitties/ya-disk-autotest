@@ -1,4 +1,4 @@
-Проект автотестов для сервиса [Яндекс.Диска](https://yandex.ru/dev/disk/rest/). Реализованы проверки методов POST, PUT, DELETE.
+Проект автотестов для сервиса [Яндекс.Диска](https://yandex.ru/dev/disk/rest/). Реализованы проверки методов GET, POST, PUT, DELETE.
 
 **Используемые технологии:** Java, Junit5, RestAssured, Awaitility
 
