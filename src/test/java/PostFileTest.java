@@ -32,12 +32,12 @@ public class PostFileTest extends BaseTest {
                 .pollInterval(1, TimeUnit.SECONDS)
                 .atMost(10, TimeUnit.SECONDS)
                 .untilAsserted(() ->
-                    given().spec(getBaseRequestSpec())
-                            .when()
-                            .get(href)
-                            .then()
-                            .statusCode(200)
-                            .body("status", equalTo("success"))
+                        given().spec(getBaseRequestSpec())
+                                .when()
+                                .get(href)
+                                .then()
+                                .statusCode(200)
+                                .body("status", equalTo("success"))
                 );
 
         given().spec(getBaseRequestSpec())
@@ -56,7 +56,7 @@ public class PostFileTest extends BaseTest {
 
     @AfterEach
     @DisplayName("Удаление файла через API Яндекс.Диска")
-    public void deleteDirectory() {
+    void deleteDirectory() {
         given()
                 .spec(getBaseRequestSpec())
                 .queryParams("path", PATH, "permanently", true)

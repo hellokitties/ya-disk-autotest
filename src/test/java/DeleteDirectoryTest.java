@@ -12,7 +12,7 @@ public class DeleteDirectoryTest extends BaseTest {
     @BeforeEach
     @DisplayName("Создание каталога через API Яндекс.Диска")
     void createDirectory() {
-       given()
+        given()
                 .spec(getBaseRequestSpec())
                 .queryParam("path", PATH)
                 .when()
@@ -25,7 +25,7 @@ public class DeleteDirectoryTest extends BaseTest {
 
     @Test
     @DisplayName("Успешное удаление директории - директория попадает в корзину")
-    public void testDeleteDirectory() {
+    void testDeleteDirectory() {
         given()
                 .spec(getBaseRequestSpec())
                 .queryParam("path", PATH)

@@ -2,8 +2,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
-public class BaseTest
-{
+public class BaseTest {
     static final String BASE_URL = "https://cloud-api.yandex.net/v1/disk";
 
     RequestSpecification getBaseRequestSpec() {
